@@ -13,28 +13,34 @@
 #import "MovieDetailsViewController.h"
 
 @interface MoviesViewController () <UITableViewDelegate, UITableViewDataSource>
+
 @property (strong, nonatomic) NSArray *movies;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
 @implementation MoviesViewController
+
+    NSString *urlString = @"https://gist.githubusercontent.com/timothy1ee/d1778ca5b944ed974db0/raw/489d812c7ceeec0ac15ab77bf7c47849f2d1eb2b/gistfile1.json";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.title = @"Movies";
+    // Refresh control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
     [self fetchMovies];
-
 }
 
--(void) fetchMovies {
+-
+(void) fetchMovies {
 
-    NSString *urlString = @"https://gist.githubusercontent.com/timothy1ee/d1778ca5b944ed974db0/raw/489d812c7ceeec0ac15ab77bf7c47849f2d1eb2b/gistfile1.json";
-    
     NSURL *url = [NSURL URLWithString:urlString];
+    [self.refreshControl endRefreshing];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-    
     NSURLSession *session =
     [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
                                   delegate:nil
@@ -53,6 +59,7 @@
                                                     //NSLog(@"Response: %@", responseDictionary);
                                                     self.movies = responseDictionary[@"movies"];
                                                     [self.tableView reloadData];
+                                                    [self.refreshControl endRefreshing];
                                                 } else {
                                                     NSLog(@"An error occurred: %@", error.description);
                                                 }
@@ -69,17 +76,22 @@
     vCell.titleLabel.text = self.movies[indexPath.row][@"title"];
     vCell.synopsisLabel.text = self.movies[indexPath.row][@"synopsis"];
     NSURL *imageUrl = [NSURL URLWithString: self.movies[indexPath.row][@"posters"][@"thumbnail"]];
-    NSLog([imageUrl absoluteString]);
+//    NSLog([imageUrl absoluteString]);
     [vCell.posterImgView setImageWithURL: imageUrl];
     return vCell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    MovieDetailsViewController *vc = [[MovieDetailsViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    MovieDetailsViewController *mdvc = [segue destinationViewController];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell: sender];
+    mdvc.posterImgUrl = [NSURL URLWithString: self.movies[indexPath.row][@"posters"][@"detailed"]];
+    mdvc.synopsisText = self.movies[indexPath.row][@"synopsis"];
+    [mdvc.synopsisTextView setText:mdvc.synopsisText];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

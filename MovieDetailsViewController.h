@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface MovieDetailsViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *posterImgView;
+
+@property (weak, nonatomic) NSURL *posterImgUrl;
+@property (strong, nonatomic) NSString *synopsisLabelText;
 
 @end

@@ -2,11 +2,12 @@
 //  MovieDetailsViewController.m
 //  RottenTomatoes
 //
-//  Created by Prasanth Guruprasad on 10/20/15.
+//  Created by Prasanth Guruprasad on 10/25/15.
 //  Copyright © 2015 codepath. All rights reserved.
 //
 
 #import "MovieDetailsViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface MovieDetailsViewController ()
 
@@ -16,8 +17,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.synopsisLabel setText:self.synopsisLabelText];
-    // Do any additional setup after loading the view from its nib.
+    // Do any additional setup after loading the view.
+    [self.synopsisTextView setText:self.synopsisText];
+    [self.postImgView setImageWithURL:self.posterImgUrl];
+
+    // scroll view setup
+    [self.synopsisTextView sizeToFit];
+    CGFloat width = self.synopsisScrollView.bounds.size.width;
+    CGFloat height = self.synopsisScrollView.bounds.size.height;
+    self.synopsisScrollView.contentSize = CGSizeMake(width, height);
+    [self.synopsisScrollView addSubview:self.synopsisTextView];
 }
 
 - (void)didReceiveMemoryWarning {
