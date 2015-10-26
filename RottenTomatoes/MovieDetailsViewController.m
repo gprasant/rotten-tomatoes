@@ -25,6 +25,7 @@
     [self.synopsisTextView sizeToFit];
     CGFloat width = self.synopsisScrollView.bounds.size.width;
     CGFloat height = self.synopsisScrollView.bounds.size.height;
+    [self.synopsisScrollView setScrollEnabled:YES];
     self.synopsisScrollView.contentSize = CGSizeMake(width, height);
     [self.synopsisScrollView addSubview:self.synopsisTextView];
 }
