@@ -25,7 +25,10 @@ Time spent: `5 hours`
 - [ ] Add a search bar: pretty simple implementation of searching against the existing table view data.
 
 ### Walkthrough
+#### Working -
 ![Video Walkthrough - working](rotten_tomatoes_working.gif)
+
+#### Network error -
 ![Video walkthrough - network err](rotten_tomatoes_network_error.gif)
 
 Credits
