@@ -10,6 +10,9 @@
 
 @interface MoviesViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *errorNotifierLabel;
+@property (weak, nonatomic) IBOutlet UIView *errorNotifierView;
+
 
 @end
 

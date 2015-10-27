@@ -14,6 +14,8 @@
 		12A276441BD6F289001C0630 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12A276421BD6F289001C0630 /* Main.storyboard */; };
 		12A276461BD6F289001C0630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12A276451BD6F289001C0630 /* Assets.xcassets */; };
 		12A276521BD6F875001C0630 /* MoviesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12A276511BD6F875001C0630 /* MoviesTableViewCell.m */; };
+		12CA32C31BDF19A700712A61 /* GiFHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 12CA32C11BDF19A700712A61 /* GiFHUD.m */; };
+		12CA32C41BDF19A700712A61 /* pika.gif in Resources */ = {isa = PBXBuildFile; fileRef = 12CA32C21BDF19A700712A61 /* pika.gif */; };
 		46CEACFCD4925D30ABA3D131 /* libPods-RottenTomatoes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33D6B8758D3B8BE7FB3E1C29 /* libPods-RottenTomatoes.a */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +33,9 @@
 		12A2764A1BD6F289001C0630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12A276501BD6F875001C0630 /* MoviesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesTableViewCell.h; sourceTree = "<group>"; };
 		12A276511BD6F875001C0630 /* MoviesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesTableViewCell.m; sourceTree = "<group>"; };
+		12CA32C01BDF19A700712A61 /* GiFHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GiFHUD.h; path = "../../../../Downloads/GiFHUD-master/GiFHUD/GiFHUD.h"; sourceTree = "<group>"; };
+		12CA32C11BDF19A700712A61 /* GiFHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GiFHUD.m; path = "../../../../Downloads/GiFHUD-master/GiFHUD/GiFHUD.m"; sourceTree = "<group>"; };
+		12CA32C21BDF19A700712A61 /* pika.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = pika.gif; path = "../../../../Downloads/GiFHUD-master/GiFHUD/pika.gif"; sourceTree = "<group>"; };
 		33D6B8758D3B8BE7FB3E1C29 /* libPods-RottenTomatoes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RottenTomatoes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91C236A295399C518ECAB552 /* Pods-RottenTomatoes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RottenTomatoes.release.xcconfig"; path = "Pods/Target Support Files/Pods-RottenTomatoes/Pods-RottenTomatoes.release.xcconfig"; sourceTree = "<group>"; };
 		D77611EFD4B8EB19555D26AB /* Pods-RottenTomatoes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RottenTomatoes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RottenTomatoes/Pods-RottenTomatoes.debug.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +74,9 @@
 		12A276381BD6F289001C0630 /* RottenTomatoes */ = {
 			isa = PBXGroup;
 			children = (
+				12CA32C01BDF19A700712A61 /* GiFHUD.h */,
+				12CA32C11BDF19A700712A61 /* GiFHUD.m */,
+				12CA32C21BDF19A700712A61 /* pika.gif */,
 				12A2763C1BD6F289001C0630 /* AppDelegate.h */,
 				12A2763D1BD6F289001C0630 /* AppDelegate.m */,
 				12A2763F1BD6F289001C0630 /* MoviesViewController.h */,
@@ -171,6 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12A276461BD6F289001C0630 /* Assets.xcassets in Resources */,
+				12CA32C41BDF19A700712A61 /* pika.gif in Resources */,
 				12A276441BD6F289001C0630 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,6 +243,7 @@
 				12A276411BD6F289001C0630 /* MoviesViewController.m in Sources */,
 				12A2763E1BD6F289001C0630 /* AppDelegate.m in Sources */,
 				12A276521BD6F875001C0630 /* MoviesTableViewCell.m in Sources */,
+				12CA32C31BDF19A700712A61 /* GiFHUD.m in Sources */,
 				12A2763B1BD6F289001C0630 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

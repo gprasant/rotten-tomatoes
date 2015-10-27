@@ -11,6 +11,7 @@
 #import "MovieDetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "MovieDetailsViewController.h"
+#import "GiFHUD.h"
 
 @interface MoviesViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -41,29 +42,38 @@
     NSURL *url = [NSURL URLWithString:urlString];
     [self.refreshControl endRefreshing];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    sessionConfig.timeoutIntervalForResource = 4;
     NSURLSession *session =
-    [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+    [NSURLSession sessionWithConfiguration: sessionConfig
                                   delegate:nil
                              delegateQueue:[NSOperationQueue mainQueue]];
-    
+    [GiFHUD setGifWithImageName: @"pika.gif"];
+    [self.errorNotifierView setHidden:YES];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                             completionHandler:^(NSData * _Nullable data,
                                                                 NSURLResponse * _Nullable response,
                                                                 NSError * _Nullable error) {
                                                 if (!error) {
+                                                   // [self.errorNotifierView removeFromSuperview]; // remove error view
+                                                    
                                                     NSError *jsonError = nil;
                                                     NSDictionary *responseDictionary =
                                                     [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:kNilOptions
                                                                                       error:&jsonError];
-                                                    //NSLog(@"Response: %@", responseDictionary);
                                                     self.movies = responseDictionary[@"movies"];
+                                                    
                                                     [self.tableView reloadData];
                                                     [self.refreshControl endRefreshing];
+                                                    [GiFHUD dismiss];
                                                 } else {
                                                     NSLog(@"An error occurred: %@", error.description);
+                                                    [GiFHUD dismiss];
+                                                    [self.errorNotifierView setHidden:NO];
                                                 }
                                             }];
+    [GiFHUD showWithOverlay];
     [task resume];
 }
 

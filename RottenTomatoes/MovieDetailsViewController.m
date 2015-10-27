@@ -13,13 +13,32 @@
 
 @end
 
+
 @implementation MovieDetailsViewController
+
+-(NSString*) getHighResImageURLString: (NSString *)originalUrlString {
+    NSString *newURLString;
+    
+   
+    
+    
+    return newURLString;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.synopsisTextView setText:self.synopsisText];
     [self.postImgView setImageWithURL:self.posterImgUrl];
+    
+    //high res image
+    NSString *originalUrlString = [self.posterImgUrl absoluteString];
+
+    NSRange range = [originalUrlString rangeOfString:@".*cloudfront.net/"
+                                             options:NSRegularExpressionSearch];
+    NSString *newURLString = [originalUrlString stringByReplacingCharactersInRange:range
+                                withString:@"https://content6.flixster.com/"];
+    [self.postImgView setImageWithURL: [NSURL URLWithString:newURLString]];
 
     // scroll view setup
     [self.synopsisTextView sizeToFit];
